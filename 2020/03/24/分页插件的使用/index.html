@@ -1,0 +1,260 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5"><title>分页插件的使用 | Ever-Wu</title><meta name="description" content="分页插件的使用"><meta name="author" content="止戈-"><meta name="copyright" content="止戈-"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/wu.png"><link rel="preconnect" href="//cdn.jsdelivr.net"><link rel="preconnect" href="https://fonts.googleapis.com" crossorigin><link rel="preconnect" href="//busuanzi.ibruce.info"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="分页插件的使用"><meta name="twitter:description" content="分页插件的使用"><meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/top_img/default.png"><meta property="og:type" content="article"><meta property="og:title" content="分页插件的使用"><meta property="og:url" content="http://vchamps.cn/2020/03/24/%E5%88%86%E9%A1%B5%E6%8F%92%E4%BB%B6%E7%9A%84%E4%BD%BF%E7%94%A8/"><meta property="og:site_name" content="Ever-Wu"><meta property="og:description" content="分页插件的使用"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/top_img/default.png"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><script src="https://cdn.jsdelivr.net/npm/js-cookie/dist/js.cookie.min.js"></script><script>const autoChangeMode = 'false'
+var t = Cookies.get("theme");
+if (autoChangeMode == '1'){
+const isDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches
+const isLightMode = window.matchMedia("(prefers-color-scheme: light)").matches
+const isNotSpecified = window.matchMedia("(prefers-color-scheme: no-preference)").matches
+const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+if (t === undefined){
+  if (isLightMode) activateLightMode()
+  else if (isDarkMode) activateDarkMode()
+  else if (isNotSpecified || hasNoSupport){
+    console.log('You specified no preference for a color scheme or your browser does not support it. I Schedule dark mode during night time.')
+    now = new Date();
+    hour = now.getHours();
+    isNight = hour < 6 || hour >= 18
+    isNight ? activateDarkMode() : activateLightMode()
+}
+} else if (t == 'light') activateLightMode()
+else activateDarkMode()
+
+
+} else if (autoChangeMode == '2'){
+  now = new Date();
+  hour = now.getHours();
+  isNight = hour < 6 || hour >= 18
+  if(t === undefined) isNight? activateDarkMode() : activateLightMode()
+  else if (t === 'light') activateLightMode()
+  else activateDarkMode() 
+} else {
+  if ( t == 'dark' ) activateDarkMode()
+  else if ( t == 'light') activateLightMode()
+}
+
+function activateDarkMode(){
+  document.documentElement.setAttribute('data-theme', 'dark')
+  if (document.querySelector('meta[name="theme-color"]') !== null){
+    document.querySelector('meta[name="theme-color"]').setAttribute('content','#000')
+  }
+}
+function activateLightMode(){
+  document.documentElement.setAttribute('data-theme', 'light')
+  if (document.querySelector('meta[name="theme-color"]') !== null){
+  document.querySelector('meta[name="theme-color"]').setAttribute('content','#fff')
+  }
+}</script><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><link rel="canonical" href="http://vchamps.cn/2020/03/24/%E5%88%86%E9%A1%B5%E6%8F%92%E4%BB%B6%E7%9A%84%E4%BD%BF%E7%94%A8/"><link rel="next" title="bootstrapValidator的使用" href="http://vchamps.cn/2020/03/20/bootstrapValidator%E7%9A%84%E4%BD%BF%E7%94%A8/"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"cookieDomain":"http://vchamps.cn","msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简"},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  bookmark: {
+    title: 'Snackbar.bookmark.title',
+    message_prev: '按',
+    message_next: '键将本页加入书签'
+  },
+  runtime_unit: '天',
+  runtime: true,
+  copyright: undefined,
+  ClickShowText: undefined,
+  medium_zoom: true,
+  fancybox: true,
+  Snackbar: undefined,
+  baiduPush: false,
+  isHome: false,
+  isPost: true
+  
+}</script><meta name="generator" content="Hexo 4.2.0"></head><body><header> <div id="page-header"><span class="pull_left" id="blog_name"><a class="blog_title" id="site-name" href="/">Ever-Wu</a></span><span class="toggle-menu pull_right close"><a class="site-page"><i class="fa fa-bars fa-fw" aria-hidden="true"></i></a></span><span class="pull_right menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fa fa-list" aria-hidden="true"></i><span> 列表</span><i class="fa fa-chevron-down menus-expand" aria-hidden="true"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fa fa-music"></i><span> Music</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fa fa-film"></i><span> Movie</span></a></li></ul></div></div></span></div></header><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="/img/WU.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">文章</div><div class="length_num">8</div></a></div></div><div class="mobile_data_item is-center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">分类</div><div class="length_num">5</div></a></div></div></div><hr><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fa fa-list" aria-hidden="true"></i><span> 列表</span><i class="fa fa-chevron-down menus-expand" aria-hidden="true"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fa fa-music"></i><span> Music</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fa fa-film"></i><span> Movie</span></a></li></ul></div></div></div><div id="mobile-sidebar-toc"><div class="toc_mobile_headline">目录</div><div class="sidebar-toc__content"></div></div></div><div id="body-wrap"><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true">     </i><div class="auto_open" id="sidebar"><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"></div></div></div><main id="content-outer"><div id="top-container" style="background-image: url(https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/top_img/default.png)"><div id="post-info"><div id="post-title"><div class="posttitle">分页插件的使用</div></div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 发表于 2020-03-24<span class="post-meta__separator">|</span><i class="fa fa-history fa-fw" aria-hidden="true"></i> 更新于 2020-03-24</time><span class="post-meta__separator">|</span><span><i class="fa fa-inbox post-meta__icon fa-fw" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/%E5%89%8D%E7%AB%AF%E6%8F%92%E4%BB%B6%E4%BD%BF%E7%94%A8/">前端插件使用</a></span><div class="post-meta-wordcount"><div class="post-meta-pv-cv"><span><i class="fa fa-eye post-meta__icon fa-fw" aria-hidden="true"> </i>阅读量:</span><span id="busuanzi_value_page_pv"></span></div></div></div></div></div><div class="layout layout_post" id="content-inner">   <article id="post"><div class="article-container" id="post-content"><p>Bootstrap Paginator是一款基于Bootstrap的js分页插件，功能很丰富，个人觉得这款插件已经无可挑剔了。它提供了一系列的参数用来支持用户的定制，提供了公共的方法可随时获得插件状态的改变，以及事件来监听用户的动作。目前经过测试的浏览器包括： Firefox 5+, Chrome 14+, Safari 5+, Opera 11.6+ and IE 7+。</p>
+<p>GitHub 官网地址：<a href="https://github.com/lyonlai/bootstrap-paginator" target="_blank" rel="noopener">https://github.com/lyonlai/bootstrap-paginator</a></p>
+<p><strong><em>\</em>参数介绍：**</strong></p>
+<table>
+<thead>
+<tr>
+<th><strong><em>\</em>参数名**</strong></th>
+<th><strong><em>\</em>数据类型**</strong></th>
+<th><strong><em>\</em>默认值**</strong></th>
+<th><strong><em>\</em>描述**</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>bootstrapMajorVersion</td>
+<td>number</td>
+<td>2</td>
+<td>搭配使用的Bootstrap版本，2.X 的 分页必须使用div元素，3.X分页的必须使用ul元素。请注意与所使用的bootstrap版本对应上。</td>
+</tr>
+<tr>
+<td>size</td>
+<td>string</td>
+<td>“normal”</td>
+<td>设置控件的显示大小，是个字符串. 允许的值: <strong>mini</strong>, <strong>small</strong>, <strong>normal</strong>,<strong>large。</strong>值：mini版的、小号的、正常的、大号的。</td>
+</tr>
+<tr>
+<td>alignment</td>
+<td>string</td>
+<td>“left”</td>
+<td>设置控件的对齐方式，是个字符串， 允许的值用： <strong>left</strong>, <strong>center</strong> and<strong>right</strong>. 即：左对齐、居中对齐、右对齐。</td>
+</tr>
+<tr>
+<td>itemContainerClass</td>
+<td>function</td>
+<td></td>
+<td>该参数接收一个函数，返回一个字符串，该字符串是一个我们自定义的class类样式。当控件内的每个操纵按钮被渲染(render)时，都会调用该函数，同时把有关该按钮的信息作为参数传入。参数：<strong>*\</strong>type*<em>**</em>,<strong>*\</strong>page*<em>**</em>, <strong>*\</strong>current*<em>**</em> 。<strong>*\</strong>type*<em>**</em>为该控件的操作按钮的类型，如上图所示的五种类型：first、prev、page、next、last。<strong>*\</strong>page*<em>**</em>为该按钮所属第几页。<strong>*\</strong>current*<em>**</em> 指示整个控件的当前页是第几页。</td>
+</tr>
+<tr>
+<td>currentPage</td>
+<td>number</td>
+<td>1</td>
+<td>设置当前页.</td>
+</tr>
+<tr>
+<td>numberOfPages</td>
+<td>number</td>
+<td>5</td>
+<td>设置控件显示的页码数.即：类型为”page”的操作按钮的数量。</td>
+</tr>
+<tr>
+<td>totalPages</td>
+<td>number</td>
+<td>1</td>
+<td>设置总页数.</td>
+</tr>
+<tr>
+<td>pageUrl</td>
+<td>function</td>
+<td></td>
+<td>实际上，控件内的每个操作按钮最终会被渲染成超链接，该参数的作用就是设置超链接的链接地址。该参数是个函数，参数为：<strong>*\</strong>type*<em>**</em>,<strong>*\</strong>page*<em>**</em>, <strong>*\</strong>current。*<em>**</em>这样我们就可以通过这个函数为每个操作按钮动态设置链接地址。如：”<a href="http://example.com/list/page/&quot;+page" target="_blank" rel="noopener">http://example.com/list/page/&quot;+page</a></td>
+</tr>
+<tr>
+<td>shouldShowPage</td>
+<td>boolean/function</td>
+<td>true</td>
+<td>该参数用于设置某个操作按钮是否显示，可是个布尔值也可是个函数。当为true时，显示。当为false时，不显示。如果该参数是个函数，需要返回个布尔值，通过这个返回值判断是否显示。函数有3个参数: <strong>*\</strong>type*<em>**</em>, <strong>*\</strong>page*<em>**</em>, <strong>*\</strong>current。*<em>**</em>使用函数的好处是，可以对每个操作按钮进行显示控制。</td>
+</tr>
+<tr>
+<td>itemTexts</td>
+<td>function</td>
+<td></td>
+<td>控制每个操作按钮的显示文字。是个函数，有3个参数: <strong>*\</strong>type*<em>**</em>, <strong>*\</strong>page*<em>**</em>, <strong>*\</strong>current。*<em>**</em>通过这个参数我们就可以将操作按钮上的英文改为中文，如first–&gt;首页，last–&gt;尾页。</td>
+</tr>
+<tr>
+<td>tooltipTitles</td>
+<td>function</td>
+<td></td>
+<td>设置操作按钮的title属性。是个函数，有3个参数: <strong>*\</strong>type*<em>**</em>, <strong>*\</strong>page*<em>**</em>, <strong>*\</strong>current。*<em>**</em></td>
+</tr>
+<tr>
+<td>useBootstrapTooltip</td>
+<td>boolean</td>
+<td>false</td>
+<td>设置是否使用Bootstrap内置的tooltip。 true是使用，false是不使用,默认是不使用。注意：如果使用，则需要引入bootstrap-tooltip.js插件。</td>
+</tr>
+<tr>
+<td>bootstrapTooltipOptions</td>
+<td>object</td>
+<td></td>
+<td>Default:  {    animation: true,    html: true,    placement: ‘top’,    selector: false,    title: “”,    container: false }该参数是个js对象。当参数useBootstrapTooltip为true时，会将该对象传给Bootstrap的bootstrap-tooltip.js插件。</td>
+</tr>
+<tr>
+<td>onPageClicked</td>
+<td>function</td>
+<td></td>
+<td>为操作按钮绑定click事件。回调函数的参数：<strong>*\</strong>event*<em>**</em>, <strong>*\</strong>originalEvent*<em>**</em>, <strong>*\</strong>type*<em>**</em>,<strong>*\</strong>page。*<em>**</em></td>
+</tr>
+<tr>
+<td>onPageChanged</td>
+<td>function</td>
+<td></td>
+<td>为操作按钮绑定页码改变事件，回调函数的参数：<strong>*\</strong>event*<em>**</em>, <strong>*\</strong>oldPage*<em>**</em>, <strong>*\</strong>newPage。*<em>**</em></td>
+</tr>
+</tbody></table>
+<p><strong><em>\</em>公共命令：**</strong></p>
+<p>另外该插件还提供了几个公共的命令，可以通过如下方法调用，如：$(‘#example’).bootstrapPaginator(“show”,3) 调用show命令、$(‘#example’).bootstrapPaginator(“getPages”) 调用getPages命令。</p>
+<table>
+<thead>
+<tr>
+<th><strong><em>\</em>命令名**</strong></th>
+<th><strong><em>\</em>参数**</strong></th>
+<th><strong><em>\</em>返回值**</strong></th>
+<th><strong><em>\</em>描述**</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>show</td>
+<td>page</td>
+<td></td>
+<td><strong><em>\</em>show**</strong>命令用于直接跳转到特定的page，与直接点击操作按钮的效果是一样的。使用方法，如：$(‘#example’).bootstrapPaginator(“show”,3) 直接跳转到第3页，$(‘#example’).bootstrapPaginator(“show”,100)直接跳转到100页。</td>
+</tr>
+<tr>
+<td>showFirst</td>
+<td></td>
+<td></td>
+<td><strong><em>\</em>showFirst**</strong> 命令用于直接跳转到首页，与点击first按钮相同。使用方法：$(‘#example’).bootstrapPaginator(“showFirst”)</td>
+</tr>
+<tr>
+<td>showPrevious</td>
+<td></td>
+<td></td>
+<td><strong><em>\</em>showPrevious**</strong> 命令用于直接跳转到上一页。使用方法：$(‘#example’).bootstrapPaginator(“showPrevious”)</td>
+</tr>
+<tr>
+<td>showNext</td>
+<td></td>
+<td></td>
+<td><strong><em>\</em>showNext**</strong>命令用于直接跳转到下一页。</td>
+</tr>
+<tr>
+<td>showLast</td>
+<td></td>
+<td></td>
+<td><strong><em>\</em>showLast**</strong> 命令用于直接跳转到上一页。</td>
+</tr>
+<tr>
+<td>getPages</td>
+<td></td>
+<td><strong>object</strong></td>
+<td><strong><em>\</em>getPages**</strong>命令用于返回当前控件中显示的页码，以数组形式返回。使用方法：var arra = $(‘#example’).bootstrapPaginator(“getPages”)</td>
+</tr>
+<tr>
+<td>setOptions</td>
+<td><strong>object</strong></td>
+<td></td>
+<td><strong><em>\</em>setOptions**</strong> 命令用于重新设置参数，使用方法：$(‘#example’).bootstrapPaginator(“setOptions”,newoptions)</td>
+</tr>
+</tbody></table>
+<p><strong><em>\</em>事件Events：**</strong></p>
+<p>Bootstrap Paginator 提供了俩个事件：<strong>page-clicked</strong>和<strong>page-changed</strong>。这俩个事件作为参数使用，分别对应<strong>onPageClicked</strong>和<strong>onPageChanged</strong>。</p>
+<table>
+<thead>
+<tr>
+<th><strong><em>\</em>事件名**</strong></th>
+<th><strong><em>\</em>回调函数**</strong></th>
+<th><strong><em>\</em>描述**</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>page-clicked</td>
+<td>function(<strong>event</strong>, <strong>originalEvent</strong>, <strong>type</strong>, <strong>page</strong>)</td>
+<td>同上文。另外，参数<strong>event</strong>, <strong>originalEvent是俩个jquery事件对象，可参考jquery相关文档</strong></td>
+</tr>
+<tr>
+<td>page-changed</td>
+<td>function(<strong>event</strong>, <strong>oldPage</strong>, <strong>newPage</strong>)</td>
+<td>同上文</td>
+</tr>
+</tbody></table>
+<p><strong><em>\</em>Demo 示例：**</strong></p>
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang"></div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">            $(<span class="string">'tbody'</span>).html(template(<span class="string">"list"</span>,data));</span><br><span class="line">            <span class="comment">// 初始化分页组件</span></span><br><span class="line">            $(<span class="string">".pagination"</span>).bootstrapPaginator(&#123;</span><br><span class="line">                <span class="comment">// 对饮的bootstrap版本</span></span><br><span class="line">                bootstrapMajorVersion: <span class="number">3</span>,</span><br><span class="line">                <span class="comment">// 分页按钮的大小</span></span><br><span class="line">                size : <span class="string">"small"</span>,</span><br><span class="line">                <span class="comment">//当前页码</span></span><br><span class="line">                currentPage: data.page,</span><br><span class="line">                <span class="comment">//当前页的总数 一共多少页</span></span><br><span class="line">                totalPages: <span class="built_in">Math</span>.ceil(data.total/data.size),</span><br><span class="line">                <span class="comment">//按钮的页码数量 默认5个</span></span><br><span class="line">                numberOfPage: <span class="number">3</span>,</span><br><span class="line">                <span class="comment">// 点击页码渲染</span></span><br><span class="line">                <span class="comment">// 监听按钮的事件  获取点击的页码</span></span><br><span class="line"></span><br><span class="line">                <span class="comment">// 2.分页展示</span></span><br><span class="line">                onPageClicked: <span class="function"><span class="keyword">function</span>(<span class="params">event,originalEvent,type,page</span>)</span>&#123;</span><br><span class="line">                    <span class="comment">// 1.event Jquery的事件对象</span></span><br><span class="line">                    <span class="comment">// 2.originalEvent 原生dom的事件对象</span></span><br><span class="line">                    <span class="comment">// 3.type 按钮的类型</span></span><br><span class="line">                    <span class="comment">// 4.page 按钮对象的页码</span></span><br><span class="line">                    <span class="built_in">window</span>.page = page;</span><br><span class="line">                    render()</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;)</span><br><span class="line">## 此例子需要在外层包含ajax获取的数据data传入的函数</span><br></pre></td></tr></table></figure></div>
+
+
+
+<a href="/2020/03/24/%E5%88%86%E9%A1%B5%E6%8F%92%E4%BB%B6%E7%9A%84%E4%BD%BF%E7%94%A8/wps1.png" data-fancybox="group" data-caption="undefined" class="fancybox"><img data-src="/2020/03/24/%E5%88%86%E9%A1%B5%E6%8F%92%E4%BB%B6%E7%9A%84%E4%BD%BF%E7%94%A8/wps1.png" class="lazyload"></a>
+
+ <a href="/2020/03/24/%E5%88%86%E9%A1%B5%E6%8F%92%E4%BB%B6%E7%9A%84%E4%BD%BF%E7%94%A8/wps2.png" data-fancybox="group" data-caption="undefined" class="fancybox"><img data-src="/2020/03/24/%E5%88%86%E9%A1%B5%E6%8F%92%E4%BB%B6%E7%9A%84%E4%BD%BF%E7%94%A8/wps2.png" class="lazyload"></a>
+
+<p>注意：分页样式用BootStrap 的，如果单独使用，请去BootStrap中把分页样式拷出来。jQuery版本需要1.8及以上。</p>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">止戈-</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://vchamps.cn/2020/03/24/%E5%88%86%E9%A1%B5%E6%8F%92%E4%BB%B6%E7%9A%84%E4%BD%BF%E7%94%A8/">http://vchamps.cn/2020/03/24/%E5%88%86%E9%A1%B5%E6%8F%92%E4%BB%B6%E7%9A%84%E4%BD%BF%E7%94%A8/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://vchamps.cn">Ever-Wu</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/top_img/default.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js"></script></div></div><nav class="pagination_post" id="pagination"><div class="next-post pull-full"><a href="/2020/03/20/bootstrapValidator%E7%9A%84%E4%BD%BF%E7%94%A8/"><img class="next_cover lazyload" data-src="https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/top_img/default.png" onerror="onerror=null;src='/img/404.jpg'"><div class="label">下一篇</div><div class="next_info"><span>bootstrapValidator的使用</span></div></a></div></nav></div></main><footer id="footer" data-type="color"><div id="footer-wrap"><div class="copyright">&copy;2020 By 止戈-</div><div class="framework-info"><span>驱动 </span><a href="http://hexo.io" target="_blank" rel="noopener"><span>Hexo</span></a><span class="footer-separator">|</span><span>主题 </span><a href="https://github.com/jerryc127/hexo-theme-butterfly" target="_blank" rel="noopener"><span>Butterfly</span></a></div></div></footer></div><section class="rightside" id="rightside"><div id="rightside-config-hide"><i class="fa fa-book" id="readmode" title="阅读模式"></i><i class="fa fa-plus" id="font_plus" title="放大字体"></i><i class="fa fa-minus" id="font_minus" title="缩小字体"></i><a class="translate_chn_to_cht" id="translateLink" href="javascript:translatePage();" title="简繁转换" target="_self">简</a><i class="darkmode fa fa-moon-o" id="darkmode" title="夜间模式"></i></div><div id="rightside-config-show"><div id="rightside_config" title="设置"><i class="fa fa-cog" aria-hidden="true"></i></div><i class="fa fa-list-ul close" id="mobile-toc-button" title="目录" aria-hidden="true"></i><i class="fa fa-arrow-up" id="go-up" title="回到顶部" aria-hidden="true"></i></div></section><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script id="ribbon_piao" mobile="false" src="https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/js/piao.js"></script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page@latest/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/lazysizes@latest/lazysizes.min.js" async=""></script><script src="https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/js/click_heart.js"></script></body></html>
