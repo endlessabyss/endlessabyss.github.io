@@ -1,6 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>git_learn</title>
+    <url>/2020/04/04/git-learn/</url>
+    <content><![CDATA[<h3 id="git基础"><a href="#git基础" class="headerlink" title="git基础"></a>git基础</h3><h4 id="git介绍"><a href="#git介绍" class="headerlink" title="git介绍"></a>git介绍</h4><p>git是目前世界上最先进的分布式控制系统</p>
+<h3 id="git与github"><a href="#git与github" class="headerlink" title="git与github"></a>git与github</h3><h4 id="两者区别"><a href="#两者区别" class="headerlink" title="两者区别"></a>两者区别</h4><p>git是一个分布式版本空值系统，简单来说就是一个软件，用于记录一个或若干个文件内容的变化，一便于将来查阅特定版本修订情况的软件</p>
+<p>Github ：<a href="http://www.github.com" target="_blank" rel="noopener">www.github.com</a></p>
+<h3 id="git的使用"><a href="#git的使用" class="headerlink" title="git的使用"></a>git的使用</h3><h4 id="git本地操作三个区域："><a href="#git本地操作三个区域：" class="headerlink" title="git本地操作三个区域："></a>git本地操作三个区域：</h4><a href="/2020/04/04/git-learn/git-learn/image-20200404161156822.png" data-fancybox="group" data-caption="undefined" class="fancybox"><img data-src="/2020/04/04/git-learn/git-learn/image-20200404161156822.png" class="lazyload"></a>
+
+<h4 id="工作流程："><a href="#工作流程：" class="headerlink" title="工作流程："></a>工作流程：</h4><a href="/2020/04/04/git-learn/git-learn/image-20200404161225329.png" data-fancybox="group" data-caption="undefined" class="fancybox"><img data-src="/2020/04/04/git-learn/git-learn/image-20200404161225329.png" class="lazyload"></a>
+
+<h4 id="本地仓库操作："><a href="#本地仓库操作：" class="headerlink" title="本地仓库操作："></a>本地仓库操作：</h4><a href="/2020/04/04/git-learn/git-learn/image-20200404161350588.png" data-fancybox="group" data-caption="undefined" class="fancybox"><img data-src="/2020/04/04/git-learn/git-learn/image-20200404161350588.png" class="lazyload"></a>
+
+<a href="/2020/04/04/git-learn/git-learn/image-20200404161359494.png" data-fancybox="group" data-caption="undefined" class="fancybox"><img data-src="/2020/04/04/git-learn/git-learn/image-20200404161359494.png" class="lazyload"></a>
+
+<ol>
+<li>创建空目录  mkdir filename</li>
+<li>在命令中进入目录</li>
+<li>git仓库初始化（告诉git需要管理此目录）  git init</li>
+</ol>
+<p>表现：执行之后在项目目录下创建 .git 隐藏目录，不能删除，也不能随意更改</p>
+<h5 id="git常用操作指令："><a href="#git常用操作指令：" class="headerlink" title="git常用操作指令："></a>git常用操作指令：</h5><p>查看当前状态：git status         非必要</p>
+<p>添加到缓存区： git add filename</p>
+<p><strong>说明</strong> ：git add 指令，可以添加一个文件，也可以同时添加多个文件。</p>
+<p>语法1：git add filename</p>
+<p>语法2：git add filename1 filename2 filename3</p>
+<p>语法3：git add 添加当前文件到缓存区</p>
+<p>提交至版本库： git commit -m “注释内容”</p>
+<p>在后续对于文件（可以操作1个或多个）操作之后  可以重复操作 git add           git  commit</p>
+<h5 id="版本回退"><a href="#版本回退" class="headerlink" title="版本回退"></a>版本回退</h5><ol>
+<li>查看版本  git log      /       git  log  –pretty=oneline</li>
+<li>回退操作：git reset –hard  提交编号</li>
+</ol>
+<p>注意：回到过去之后，要想回到之前最新的版本的时候，则需要使用指令去查看历史操作，以得到最新的commit id           </p>
+<p>指令： git reflog</p>
+<p>小结：①要想回到过去，必须先得到commit id，然后通过git reset -hard 进行回退   ②要想回到未来，则需要使用git reflog进行历史操作查看，得到最新的commit id  ③ 在写回退指令的时候commit id可以不写全，git自动识别，但是也不能写太少，至少需要写前4位字符</p>
+<h3 id="github-远程仓库的创建"><a href="#github-远程仓库的创建" class="headerlink" title="github 远程仓库的创建"></a>github 远程仓库的创建</h3><h4 id="两种常规方式"><a href="#两种常规方式" class="headerlink" title="两种常规方式"></a>两种常规方式</h4><h5 id="基于http协议"><a href="#基于http协议" class="headerlink" title="基于http协议"></a>基于http协议</h5><ol>
+<li><p>创建空目录，</p>
+</li>
+<li><p>使用clone指令克隆线上仓库到本地</p>
+<p>指令：git clone + 地址</p>
+</li>
+<li><p>在仓库上做对应的操作（提交暂存区，提交本地仓库，拉去线上仓库） 提交到线上仓库的指令：git push</p>
+<p><em>在首次往线上仓库提交内容的时候出现了403的错误，原因是，不是任何人都可以在线上仓库提交内容</em></p>
+<p>修改git隐藏文件中 url地址修改如：hhtps://用户名：密码@github.com/用户名/仓库名.git  。 当克隆线上仓库可直接进行修改，只需要加入用户名和密码</p>
+<p>设置好以后再重新上传: git push</p>
+</li>
+<li><p>拉取线上仓库与本地仓库同步：git pull</p>
+</li>
+</ol>
+<p>提醒：在每天工作的第一件事git pull拉取线上最新的版本；每天下班前要做的是 git push，将本地代码提交到线上仓库</p>
+<h5 id="基于SSH的方式（需自行安装openSSH）"><a href="#基于SSH的方式（需自行安装openSSH）" class="headerlink" title="基于SSH的方式（需自行安装openSSH）"></a>基于SSH的方式（需自行安装openSSH）</h5><p>步骤：① 生成客户端公私钥文件 ②将公钥上传到Github</p>
+<p>创建公私钥文件 ： ssh-keygen -t rsa -C “github注册邮箱”</p>
+<p>根据命令界面提示的文件目录，找到ssh.pub文件，复制密钥到github仓库</p>
+<p>③ 执行基于SSH的代码克隆，在github仓库可选http和ssh，以后的操作指令都和基于http类似</p>
+<h4 id="分支管理（分支文件互不影响）"><a href="#分支管理（分支文件互不影响）" class="headerlink" title="分支管理（分支文件互不影响）"></a>分支管理（分支文件互不影响）</h4><h5 id="分支相关指令"><a href="#分支相关指令" class="headerlink" title="分支相关指令"></a>分支相关指令</h5><p>查看分支：git branch    当前分支有个标记 “*”</p>
+<p>创建分支：git branch 分支名</p>
+<p>切换分支：git checkout 分支名</p>
+<p>删除分支： git branch-d 分支名</p>
+<p><em>注意：在删除分支的时候一定要退出要删除的分支</em></p>
+<p>合并分支： git merge </p>
+<p><em>合并分支后 需要提交到远程仓库中</em></p>
+<h4 id="冲突的产生与解决"><a href="#冲突的产生与解决" class="headerlink" title="冲突的产生与解决"></a>冲突的产生与解决</h4><p>1、git冲突的场景</p>
+<ul>
+<li>情景一：多个分支代码合并到一个分支时；</li>
+<li>情景二：多个分支向同一个远端分支推送代码时；</li>
+</ul>
+<p>实际上，push操作即是将本地代码merge到远端库分支上。</p>
+<p>关于push和pull其实就分别是用本地分支合并到远程分支 和 将远程分支合并到本地分支</p>
+<p>所以这两个过程中也可能存在冲突。</p>
+<p>git的合并中产生冲突的具体情况：<br>　　&lt;1&gt;两个分支中修改了同一个文件（不管什么地方）<br>　　&lt;2&gt;两个分支中修改了同一个文件的名称<br>两个分支中分别修改了不同文件中的部分，不会产生冲突，可以直接将两部分合并。</p>
+<p>2、冲突解决方法</p>
+<ul>
+<li><p>情景一：在当前分支上，直接修改冲突代码—&gt;add—&gt;commit。</p>
+</li>
+<li><p>情景二：在本地当前分支上，修改冲突代码—&gt;add—&gt;commit—&gt;push</p>
+<p>注：借用vim或者IDE或者直接找到冲突文件，修改。</p>
+</li>
+</ul>
+<h3 id="git实用技能"><a href="#git实用技能" class="headerlink" title="git实用技能"></a>git实用技能</h3><h4 id="图形化界面工具推荐"><a href="#图形化界面工具推荐" class="headerlink" title="图形化界面工具推荐"></a>图形化界面工具推荐</h4><p>① Github for Desktop</p>
+<p>②  Source tree （号称最好用Git  GUI工具）</p>
+<p>③  TortoiseGit（海龟Git   前辈TortoiseSVN）</p>
+<p>④  Git自带的GUI 工具 （不推荐）</p>
+<h3 id="忽略文件操作"><a href="#忽略文件操作" class="headerlink" title="忽略文件操作"></a>忽略文件操作</h3><h4 id="常见规则写法有如下几种"><a href="#常见规则写法有如下几种" class="headerlink" title="常见规则写法有如下几种"></a>常见规则写法有如下几种</h4><p>创建 .gitigno文件  Linux命令  touch</p>
+<p>mtk代表文件夹</p>
+<p>1） /mtk/   过滤整个文件夹</p>
+<p>2） *.zip       过滤所有 .zip文件</p>
+<p>3） /mtk/do.c            过滤某个具体文件</p>
+<p>4） !index.php            不过滤某个具体文件</p>
+]]></content>
+  </entry>
+  <entry>
     <title>echarts 各个配置项详细说明总结</title>
     <url>/2020/03/26/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E6%8F%92%E4%BB%B6echarts/</url>
     <content><![CDATA[<p>转自菜鸟教程：</p>
@@ -1024,7 +1114,8 @@
   <entry>
     <title>es6的学习(长期更新到学完)</title>
     <url>/2020/03/07/es6%E7%9A%84%E5%AD%A6%E4%B9%A0/</url>
-    <content><![CDATA[<h3 id="let"><a href="#let" class="headerlink" title="let"></a>let</h3><p>注：</p>
+    <content><![CDATA[<p>后期会对图片文件进行重新整理，变成相应的文本格式，提高加载速度</p>
+<h3 id="let"><a href="#let" class="headerlink" title="let"></a>let</h3><p>注：</p>
 <ol>
 <li><p>es6没有对es5有任何修改，全部新增</p>
 </li>
@@ -1284,25 +1375,25 @@
 <p>静态方法只能对象自身调用，不能实例化调用</p>
 <p>例子：</p>
 <p><a href="/2020/03/07/es6%E7%9A%84%E5%AD%A6%E4%B9%A0/image-20200401215523006.png" data-fancybox="group" data-caption="image-20200401215523006" class="fancybox"><img alt="image-20200401215523006" title="image-20200401215523006" data-src="/2020/03/07/es6%E7%9A%84%E5%AD%A6%E4%B9%A0/image-20200401215523006.png" class="lazyload"></a></p>
-<h4 id="set和get访问器"><a href="#set和get访问器" class="headerlink" title="set和get访问器"></a>set和get访问器</h4><p><a href="/2020/03/07/es6%E7%9A%84%E5%AD%A6%E4%B9%A0/image-20200402183023313.png" data-fancybox="group" data-caption="image-20200402183023313" class="fancybox"><img alt="image-20200402183023313" title="image-20200402183023313" data-src="/2020/03/07/es6%E7%9A%84%E5%AD%A6%E4%B9%A0/image-20200402183023313.png" class="lazyload"></a></p>
+<h4 id="set和get访问器"><a href="#set和get访问器" class="headerlink" title="set和get访问器"></a>set和get访问器</h4><p><a href="/2020/03/07/es6%E7%9A%84%E5%AD%A6%E4%B9%A0/git-learn/image-20200402183023313.png" data-fancybox="group" data-caption="image-20200402183023313" class="fancybox"><img alt="image-20200402183023313" title="image-20200402183023313" data-src="/2020/03/07/es6%E7%9A%84%E5%AD%A6%E4%B9%A0/git-learn/image-20200402183023313.png" class="lazyload"></a></p>
 <p>setter访问器 ：弱队属性进行了设置，则会执行getter访问器</p>
 <p>getter访问器：若取出当前属性的值，则会执行setter访问器</p>
-<p><a href="/2020/03/07/es6%E7%9A%84%E5%AD%A6%E4%B9%A0/image-20200402184625707.png" data-fancybox="group" data-caption="image-20200402184625707" class="fancybox"><img alt="image-20200402184625707" title="image-20200402184625707" data-src="/2020/03/07/es6%E7%9A%84%E5%AD%A6%E4%B9%A0/image-20200402184625707.png" class="lazyload"></a></p>
+<p><a href="/2020/03/07/es6%E7%9A%84%E5%AD%A6%E4%B9%A0/git-learn/image-20200402184625707.png" data-fancybox="group" data-caption="image-20200402184625707" class="fancybox"><img alt="image-20200402184625707" title="image-20200402184625707" data-src="/2020/03/07/es6%E7%9A%84%E5%AD%A6%E4%B9%A0/git-learn/image-20200402184625707.png" class="lazyload"></a></p>
 <h4 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h4><p>ES5完成继承：</p>
-<p><a href="/2020/03/07/es6%E7%9A%84%E5%AD%A6%E4%B9%A0/image-20200402185712553.png" data-fancybox="group" data-caption="image-20200402185712553" class="fancybox"><img alt="image-20200402185712553" title="image-20200402185712553" data-src="/2020/03/07/es6%E7%9A%84%E5%AD%A6%E4%B9%A0/image-20200402185712553.png" class="lazyload"></a></p>
-<p><a href="/2020/03/07/es6%E7%9A%84%E5%AD%A6%E4%B9%A0/image-20200402185741097.png" data-fancybox="group" data-caption="image-20200402185741097" class="fancybox"><img alt="image-20200402185741097" title="image-20200402185741097" data-src="/2020/03/07/es6%E7%9A%84%E5%AD%A6%E4%B9%A0/image-20200402185741097.png" class="lazyload"></a></p>
+<p><a href="/2020/03/07/es6%E7%9A%84%E5%AD%A6%E4%B9%A0/git-learn/image-20200402185712553.png" data-fancybox="group" data-caption="image-20200402185712553" class="fancybox"><img alt="image-20200402185712553" title="image-20200402185712553" data-src="/2020/03/07/es6%E7%9A%84%E5%AD%A6%E4%B9%A0/git-learn/image-20200402185712553.png" class="lazyload"></a></p>
+<p><a href="/2020/03/07/es6%E7%9A%84%E5%AD%A6%E4%B9%A0/git-learn/image-20200402185741097.png" data-fancybox="group" data-caption="image-20200402185741097" class="fancybox"><img alt="image-20200402185741097" title="image-20200402185741097" data-src="/2020/03/07/es6%E7%9A%84%E5%AD%A6%E4%B9%A0/git-learn/image-20200402185741097.png" class="lazyload"></a></p>
 <p>ES6中继承：</p>
 <p>继承是单向的，父类只有一个，子类可以有很多个</p>
 <p>父类：基类</p>
 <p>子类：派生类</p>
-<p><a href="/2020/03/07/es6%E7%9A%84%E5%AD%A6%E4%B9%A0/image-20200402190014818.png" data-fancybox="group" data-caption="image-20200402190014818" class="fancybox"><img alt="image-20200402190014818" title="image-20200402190014818" data-src="/2020/03/07/es6%E7%9A%84%E5%AD%A6%E4%B9%A0/image-20200402190014818.png" class="lazyload"></a></p>
-<p><a href="/2020/03/07/es6%E7%9A%84%E5%AD%A6%E4%B9%A0/image-20200402190425131.png" data-fancybox="group" data-caption="image-20200402190425131" class="fancybox"><img alt="image-20200402190425131" title="image-20200402190425131" data-src="/2020/03/07/es6%E7%9A%84%E5%AD%A6%E4%B9%A0/image-20200402190425131.png" class="lazyload"></a></p>
-<h3 id="JS异常处理"><a href="#JS异常处理" class="headerlink" title="JS异常处理"></a>JS异常处理</h3><p><a href="/2020/03/07/es6%E7%9A%84%E5%AD%A6%E4%B9%A0/image-20200402215905567.png" data-fancybox="group" data-caption="image-20200402215905567" class="fancybox"><img alt="image-20200402215905567" title="image-20200402215905567" data-src="/2020/03/07/es6%E7%9A%84%E5%AD%A6%E4%B9%A0/image-20200402215905567.png" class="lazyload"></a></p>
+<p><a href="/2020/03/07/es6%E7%9A%84%E5%AD%A6%E4%B9%A0/git-learn/image-20200402190014818.png" data-fancybox="group" data-caption="image-20200402190014818" class="fancybox"><img alt="image-20200402190014818" title="image-20200402190014818" data-src="/2020/03/07/es6%E7%9A%84%E5%AD%A6%E4%B9%A0/git-learn/image-20200402190014818.png" class="lazyload"></a></p>
+<p><a href="/2020/03/07/es6%E7%9A%84%E5%AD%A6%E4%B9%A0/git-learn/image-20200402190425131.png" data-fancybox="group" data-caption="image-20200402190425131" class="fancybox"><img alt="image-20200402190425131" title="image-20200402190425131" data-src="/2020/03/07/es6%E7%9A%84%E5%AD%A6%E4%B9%A0/git-learn/image-20200402190425131.png" class="lazyload"></a></p>
+<h3 id="JS异常处理"><a href="#JS异常处理" class="headerlink" title="JS异常处理"></a>JS异常处理</h3><p><a href="/2020/03/07/es6%E7%9A%84%E5%AD%A6%E4%B9%A0/git-learn/image-20200402215905567.png" data-fancybox="group" data-caption="image-20200402215905567" class="fancybox"><img alt="image-20200402215905567" title="image-20200402215905567" data-src="/2020/03/07/es6%E7%9A%84%E5%AD%A6%E4%B9%A0/git-learn/image-20200402215905567.png" class="lazyload"></a></p>
 <p>try…..catch</p>
-<p><a href="/2020/03/07/es6%E7%9A%84%E5%AD%A6%E4%B9%A0/image-20200402220954321.png" data-fancybox="group" data-caption="image-20200402220954321" class="fancybox"><img alt="image-20200402220954321" title="image-20200402220954321" data-src="/2020/03/07/es6%E7%9A%84%E5%AD%A6%E4%B9%A0/image-20200402220954321.png" class="lazyload"></a></p>
+<p><a href="/2020/03/07/es6%E7%9A%84%E5%AD%A6%E4%B9%A0/git-learn/image-20200402220954321.png" data-fancybox="group" data-caption="image-20200402220954321" class="fancybox"><img alt="image-20200402220954321" title="image-20200402220954321" data-src="/2020/03/07/es6%E7%9A%84%E5%AD%A6%E4%B9%A0/git-learn/image-20200402220954321.png" class="lazyload"></a></p>
 <p>finally子句：</p>
-<p><a href="/2020/03/07/es6%E7%9A%84%E5%AD%A6%E4%B9%A0/image-20200402221556112.png" data-fancybox="group" data-caption="image-20200402221556112" class="fancybox"><img alt="image-20200402221556112" title="image-20200402221556112" data-src="/2020/03/07/es6%E7%9A%84%E5%AD%A6%E4%B9%A0/image-20200402221556112.png" class="lazyload"></a></p>
-<p><a href="/2020/03/07/es6%E7%9A%84%E5%AD%A6%E4%B9%A0/image-20200402221930116.png" data-fancybox="group" data-caption="image-20200402221930116" class="fancybox"><img alt="image-20200402221930116" title="image-20200402221930116" data-src="/2020/03/07/es6%E7%9A%84%E5%AD%A6%E4%B9%A0/image-20200402221930116.png" class="lazyload"></a></p>
+<p><a href="/2020/03/07/es6%E7%9A%84%E5%AD%A6%E4%B9%A0/git-learn/image-20200402221556112.png" data-fancybox="group" data-caption="image-20200402221556112" class="fancybox"><img alt="image-20200402221556112" title="image-20200402221556112" data-src="/2020/03/07/es6%E7%9A%84%E5%AD%A6%E4%B9%A0/git-learn/image-20200402221556112.png" class="lazyload"></a></p>
+<p><a href="/2020/03/07/es6%E7%9A%84%E5%AD%A6%E4%B9%A0/git-learn/image-20200402221930116.png" data-fancybox="group" data-caption="image-20200402221930116" class="fancybox"><img alt="image-20200402221930116" title="image-20200402221930116" data-src="/2020/03/07/es6%E7%9A%84%E5%AD%A6%E4%B9%A0/git-learn/image-20200402221930116.png" class="lazyload"></a></p>
 <p>错误类型：</p>
 <p><a href="/2020/03/07/es6%E7%9A%84%E5%AD%A6%E4%B9%A0/es6%E7%9A%84%E5%AD%A6%E4%B9%A0/image-20200402222812529.png" data-fancybox="group" data-caption="image-20200402222812529" class="fancybox"><img alt="image-20200402222812529" title="image-20200402222812529" data-src="/2020/03/07/es6%E7%9A%84%E5%AD%A6%E4%B9%A0/es6%E7%9A%84%E5%AD%A6%E4%B9%A0/image-20200402222812529.png" class="lazyload"></a></p>
 <p><a href="/2020/03/07/es6%E7%9A%84%E5%AD%A6%E4%B9%A0/es6%E7%9A%84%E5%AD%A6%E4%B9%A0/image-20200402222904876.png" data-fancybox="group" data-caption="image-20200402222904876" class="fancybox"><img alt="image-20200402222904876" title="image-20200402222904876" data-src="/2020/03/07/es6%E7%9A%84%E5%AD%A6%E4%B9%A0/es6%E7%9A%84%E5%AD%A6%E4%B9%A0/image-20200402222904876.png" class="lazyload"></a></p>
@@ -1313,6 +1404,32 @@
 <p><a href="/2020/03/07/es6%E7%9A%84%E5%AD%A6%E4%B9%A0/es6%E7%9A%84%E5%AD%A6%E4%B9%A0/image-20200403130943937.png" data-fancybox="group" data-caption="image-20200403130943937" class="fancybox"><img alt="image-20200403130943937" title="image-20200403130943937" data-src="/2020/03/07/es6%E7%9A%84%E5%AD%A6%E4%B9%A0/es6%E7%9A%84%E5%AD%A6%E4%B9%A0/image-20200403130943937.png" class="lazyload"></a></p>
 <p>同步：按顺序执行</p>
 <p><a href="/2020/03/07/es6%E7%9A%84%E5%AD%A6%E4%B9%A0/es6%E7%9A%84%E5%AD%A6%E4%B9%A0/image-20200403130730977.png" data-fancybox="group" data-caption="image-20200403130730977" class="fancybox"><img alt="image-20200403130730977" title="image-20200403130730977" data-src="/2020/03/07/es6%E7%9A%84%E5%AD%A6%E4%B9%A0/es6%E7%9A%84%E5%AD%A6%E4%B9%A0/image-20200403130730977.png" class="lazyload"></a></p>
+<p>异步队列：注意回调地狱</p>
+<p><a href="/2020/03/07/es6%E7%9A%84%E5%AD%A6%E4%B9%A0/es6%E7%9A%84%E5%AD%A6%E4%B9%A0/image-20200403165414556.png" data-fancybox="group" data-caption="image-20200403165414556" class="fancybox"><img alt="image-20200403165414556" title="image-20200403165414556" data-src="/2020/03/07/es6%E7%9A%84%E5%AD%A6%E4%B9%A0/es6%E7%9A%84%E5%AD%A6%E4%B9%A0/image-20200403165414556.png" class="lazyload"></a></p>
+<p>promise对象：</p>
+<p><a href="/2020/03/07/es6%E7%9A%84%E5%AD%A6%E4%B9%A0/es6%E7%9A%84%E5%AD%A6%E4%B9%A0/image-20200403171816107.png" data-fancybox="group" data-caption="image-20200403171816107" class="fancybox"><img alt="image-20200403171816107" title="image-20200403171816107" data-src="/2020/03/07/es6%E7%9A%84%E5%AD%A6%E4%B9%A0/es6%E7%9A%84%E5%AD%A6%E4%B9%A0/image-20200403171816107.png" class="lazyload"></a></p>
+<p>基本语法：</p>
+<p><a href="/2020/03/07/es6%E7%9A%84%E5%AD%A6%E4%B9%A0/es6%E7%9A%84%E5%AD%A6%E4%B9%A0/image-20200403172536440.png" data-fancybox="group" data-caption="image-20200403172536440" class="fancybox"><img alt="image-20200403172536440" title="image-20200403172536440" data-src="/2020/03/07/es6%E7%9A%84%E5%AD%A6%E4%B9%A0/es6%E7%9A%84%E5%AD%A6%E4%B9%A0/image-20200403172536440.png" class="lazyload"></a></p>
+<p>举例：</p>
+<p><a href="/2020/03/07/es6%E7%9A%84%E5%AD%A6%E4%B9%A0/es6%E7%9A%84%E5%AD%A6%E4%B9%A0/image-20200403172727019.png" data-fancybox="group" data-caption="image-20200403172727019" class="fancybox"><img alt="image-20200403172727019" title="image-20200403172727019" data-src="/2020/03/07/es6%E7%9A%84%E5%AD%A6%E4%B9%A0/es6%E7%9A%84%E5%AD%A6%E4%B9%A0/image-20200403172727019.png" class="lazyload"></a></p>
+<p>promise使用：</p>
+<p><a href="/2020/03/07/es6%E7%9A%84%E5%AD%A6%E4%B9%A0/es6%E7%9A%84%E5%AD%A6%E4%B9%A0/image-20200403173555046.png" data-fancybox="group" data-caption="image-20200403173555046" class="fancybox"><img alt="image-20200403173555046" title="image-20200403173555046" data-src="/2020/03/07/es6%E7%9A%84%E5%AD%A6%E4%B9%A0/es6%E7%9A%84%E5%AD%A6%E4%B9%A0/image-20200403173555046.png" class="lazyload"></a></p>
+<ul>
+<li>依次输出：settimeout 11   30毫秒</li>
+<li>settimeout 22   50毫秒</li>
+<li>settimeout 33   0毫秒   用promise实现</li>
+</ul>
+<p>promise发起ajax请求：</p>
+<p><a href="/2020/03/07/es6%E7%9A%84%E5%AD%A6%E4%B9%A0/es6%E7%9A%84%E5%AD%A6%E4%B9%A0/image-20200403180644787.png" data-fancybox="group" data-caption="image-20200403180644787" class="fancybox"><img alt="image-20200403180644787" title="image-20200403180644787" data-src="/2020/03/07/es6%E7%9A%84%E5%AD%A6%E4%B9%A0/es6%E7%9A%84%E5%AD%A6%E4%B9%A0/image-20200403180644787.png" class="lazyload"></a></p>
+<p>封装ajax，用promise：</p>
+<p><a href="/2020/03/07/es6%E7%9A%84%E5%AD%A6%E4%B9%A0/es6%E7%9A%84%E5%AD%A6%E4%B9%A0/image-20200403175851665.png" data-fancybox="group" data-caption="image-20200403175851665" class="fancybox"><img alt="image-20200403175851665" title="image-20200403175851665" data-src="/2020/03/07/es6%E7%9A%84%E5%AD%A6%E4%B9%A0/es6%E7%9A%84%E5%AD%A6%E4%B9%A0/image-20200403175851665.png" class="lazyload"></a></p>
+<p><a href="/2020/03/07/es6%E7%9A%84%E5%AD%A6%E4%B9%A0/es6%E7%9A%84%E5%AD%A6%E4%B9%A0/image-20200403180441806.png" data-fancybox="group" data-caption="image-20200403180441806" class="fancybox"><img alt="image-20200403180441806" title="image-20200403180441806" data-src="/2020/03/07/es6%E7%9A%84%E5%AD%A6%E4%B9%A0/es6%E7%9A%84%E5%AD%A6%E4%B9%A0/image-20200403180441806.png" class="lazyload"></a></p>
+<h3 id="模块化"><a href="#模块化" class="headerlink" title="模块化"></a>模块化</h3><p><a href="/2020/03/07/es6%E7%9A%84%E5%AD%A6%E4%B9%A0/es6%E7%9A%84%E5%AD%A6%E4%B9%A0/image-20200403195658907.png" data-fancybox="group" data-caption="image-20200403195658907" class="fancybox"><img alt="image-20200403195658907" title="image-20200403195658907" data-src="/2020/03/07/es6%E7%9A%84%E5%AD%A6%E4%B9%A0/es6%E7%9A%84%E5%AD%A6%E4%B9%A0/image-20200403195658907.png" class="lazyload"></a></p>
+<p>export：  导出</p>
+<p>import： 导入</p>
+<p>​            import —–from———-   从什么模块，导入</p>
+<p>严格模式：</p>
+<p><a href="/2020/03/07/es6%E7%9A%84%E5%AD%A6%E4%B9%A0/es6%E7%9A%84%E5%AD%A6%E4%B9%A0/image-20200403202538043.png" data-fancybox="group" data-caption="image-20200403202538043" class="fancybox"><img alt="image-20200403202538043" title="image-20200403202538043" data-src="/2020/03/07/es6%E7%9A%84%E5%AD%A6%E4%B9%A0/es6%E7%9A%84%E5%AD%A6%E4%B9%A0/image-20200403202538043.png" class="lazyload"></a></p>
 ]]></content>
       <categories>
         <category>ES6</category>
