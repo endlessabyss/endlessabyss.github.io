@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>webpack安装与实践</title>
+    <url>/2020/04/04/webpack%E5%AE%89%E8%A3%85%E4%B8%8E%E5%AE%9E%E8%B7%B5/</url>
+    <content><![CDATA[<h3 id="webpack基础知识与工具使用"><a href="#webpack基础知识与工具使用" class="headerlink" title="webpack基础知识与工具使用"></a>webpack基础知识与工具使用</h3><h4 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h4><p>它是一个前端资源加载/打包工具，将根据模块的依赖关系</p>
+<p>进行静态分析，并依据规则生成对应的静态资源</p>
+]]></content>
+  </entry>
+  <entry>
     <title>git_learn</title>
     <url>/2020/04/04/git-learn/</url>
     <content><![CDATA[<h3 id="git基础"><a href="#git基础" class="headerlink" title="git基础"></a>git基础</h3><h4 id="git介绍"><a href="#git介绍" class="headerlink" title="git介绍"></a>git介绍</h4><p>git是目前世界上最先进的分布式控制系统</p>
